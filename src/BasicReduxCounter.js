@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {createStore} from 'redux'
-import {reduce} from './actions'
-import actions from "./actions";
+import {reduce} from './simple_actions_n_reduce'
+import simple_actions_n_reduce from "./simple_actions_n_reduce";
 
 const store = createStore(reduce);
 
-class Counter extends Component {
+class BasicReduxCounter extends Component {
 
     handleInc = () => {
         /*this.setState({
             number: this.state.number + 1
         })*/
 
-        store.dispatch({type: actions.INC});
+        store.dispatch({type: simple_actions_n_reduce.INC});
     }
 
 
@@ -22,7 +22,7 @@ class Counter extends Component {
         })*/
 
 
-        store.dispatch({type: actions.DEC});
+        store.dispatch({type: simple_actions_n_reduce.DEC});
     }
 
 
@@ -51,4 +51,4 @@ class Counter extends Component {
     }
 }
 
-export default Counter;
+export default BasicReduxCounter;

@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 import './App.css';
-import Counter from "./Counter";
+import BasicReduxCounter from "./BasicReduxCounter";
 import {createStore} from 'redux'
-import {reduce} from './actions'
+import {Provider, connect} from 'react-redux'
+import {reduce} from './simple_actions_n_reduce'
+import ReactRedux from "./ReactRedux";
+import OuterComponent from "./OuterComponent";
+import InnerComponent from "./InnerComponent";
+import ReduxComponent2 from "./NestedReduxComponent2";
+
+const store = createStore(reduce);
 
 class App extends Component {
     // const
     // store = createStore(reduce);
 
     render() {
-        const store = createStore(reduce);
+
+        console.log("store",store);
 
         return (
             <div className="App">
@@ -30,7 +38,14 @@ class App extends Component {
                 {/*<Foo/>*/}
                 {/*<MyCompo name={'프롭스'}/>*/}
                 {/*<Counter name={'illiac'}/>*/}
-                <Counter/>
+                {/*<BasicReduxCounter/>*/}
+                <Provider store={store}>
+                    <ReactRedux/>
+                    {/*<ReduxComponent2/>*/}
+                </Provider>
+                <OuterComponent name={'name'}>
+                    <InnerComponent/>
+                </OuterComponent>
             </div>
         );
     }

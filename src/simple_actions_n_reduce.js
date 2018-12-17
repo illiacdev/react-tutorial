@@ -1,29 +1,29 @@
-const actions = {
+const simple_actions_n_reduce = {
     INC: 'INC',
     DEC: 'DEC',
 
     inc() {
-        return {type: actions.INC}
+        return {type: simple_actions_n_reduce.INC}
     },
 
     dec() {
-        return {type: actions.DEC}
+        return {type: simple_actions_n_reduce.DEC}
     }
 
 }
 
 const initState = {
-    number: 10
+    number: 11
 }
 
 export const reduce = (state = initState, action) => {
-
+    console.log("on reduce !");
     switch (action.type) {
-        case actions.INC:
+        case simple_actions_n_reduce.INC:
             return {...state, number: state.number + 1}
             break;
 
-        case actions.DEC:
+        case simple_actions_n_reduce.DEC:
             return {...state, number: state.number - 1}
             break;
 
@@ -33,5 +33,5 @@ export const reduce = (state = initState, action) => {
 
 }
 
-export default actions;
+export default simple_actions_n_reduce;
 
