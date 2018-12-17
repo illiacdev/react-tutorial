@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Counter from "./Counter";
+import {createStore} from 'redux'
+import {reduce} from './actions'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
+    // const
+    // store = createStore(reduce);
+
+    render() {
+        const store = createStore(reduce);
+
+        return (
+            <div className="App">
+                {/*<header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -19,10 +26,14 @@ class App extends Component {
           >
             Learn React
           </a>
-        </header>
-      </div>
-    );
-  }
+        </header>*/}
+                {/*<Foo/>*/}
+                {/*<MyCompo name={'프롭스'}/>*/}
+                {/*<Counter name={'illiac'}/>*/}
+                <Counter/>
+            </div>
+        );
+    }
 }
 
 export default App;
