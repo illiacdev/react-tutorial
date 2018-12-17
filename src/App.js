@@ -1,66 +1,33 @@
-import React, {Component} from 'react';
-import './App.css';
-import BasicReduxCounter from "./BasicReduxCounter";
+import React, { Component } from 'react';
 import {createStore,compose,applyMiddleware} from 'redux'
-import {Provider, connect} from 'react-redux'
-import {reduce} from './simple_actions_n_reduce'
-import ReactRedux from "./ReactRedux";
-import OuterComponent from "./OuterComponent";
-import InnerComponent from "./InnerComponent";
-import ReduxComponent2 from "./NestedReduxComponent2";
+import {Provider} from 'react-redux'
+import factory  from 'redux-saga'
 
+import {reduce} from './actions'
+import {sagaMain} from './saga'
+
+import logo from './logo.svg';
+import './App.css';
+import ReduxComponent from "./ReduxComponent";
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = devTools || compose;
 
-const middlewares = []; // 나중에 이 자리에 미들웨어 추가
+let sagaMiddleware = factory();
+const store = createStore(reduce,composeEnhancers(applyMiddleware(sagaMiddleware)));
 
-const store = createStore(reduce,composeEnhancers());
-// const store = createStore(reduce);
-
-// const store = createStore(modules, composeEnhancers(
-//     applyMiddleware(...middlewares)
-// ));
-
-
+sagaMiddleware.run(sagaMain);
 class App extends Component {
-    // const
-    // store = createStore(reduce);
+  render() {
+      return (
+          <div className="App">
 
-    render() {
-
-        console.log("store",store);
-
-        return (
-            <div className="App">
-                {/*<header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>*/}
-                {/*<Foo/>*/}
-                {/*<MyCompo name={'프롭스'}/>*/}
-                {/*<Counter name={'illiac'}/>*/}
-                {/*<BasicReduxCounter/>*/}
-                <Provider store={store}>
-                    <ReactRedux/>
-                    {/*<ReduxComponent2/>*/}
-                </Provider>
-                <OuterComponent name={'name'}>
-                    <InnerComponent/>
-                </OuterComponent>
-            </div>
-        );
-    }
+              <Provider store={store}>
+                  <ReduxComponent/>
+              </Provider>
+          </div>
+      );
+  }
 }
 
 export default App;

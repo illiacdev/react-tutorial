@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createStore} from 'redux'
 import {reduce} from './simple_actions_n_reduce'
-import simple_actions_n_reduce from "./simple_actions_n_reduce";
+import {actions} from "./simple_actions_n_reduce";
 
 const store = createStore(reduce);
 
@@ -12,7 +12,7 @@ class BasicReduxCounter extends Component {
             number: this.state.number + 1
         })*/
 
-        store.dispatch({type: simple_actions_n_reduce.INC});
+        store.dispatch({type: actions.INC});
     }
 
 
@@ -22,7 +22,7 @@ class BasicReduxCounter extends Component {
         })*/
 
 
-        store.dispatch({type: simple_actions_n_reduce.DEC});
+        store.dispatch({type: actions.DEC});
     }
 
 

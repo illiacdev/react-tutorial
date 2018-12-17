@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import actions from './simple_actions_n_reduce'
+import {actions} from './simple_actions_n_reduce'
 
 const {inc, dec} = actions;
 
