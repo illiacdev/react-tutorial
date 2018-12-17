@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import BasicReduxCounter from "./BasicReduxCounter";
-import {createStore} from 'redux'
+import {createStore,compose} from 'redux'
 import {Provider, connect} from 'react-redux'
 import {reduce} from './simple_actions_n_reduce'
 import ReactRedux from "./ReactRedux";
@@ -9,7 +9,12 @@ import OuterComponent from "./OuterComponent";
 import InnerComponent from "./InnerComponent";
 import ReduxComponent2 from "./NestedReduxComponent2";
 
-const store = createStore(reduce);
+
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const composeEnhancers = devTools || compose;
+
+const store = createStore(reduce,composeEnhancers());
+// const store = createStore(reduce);
 
 class App extends Component {
     // const
