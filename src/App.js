@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import BasicReduxCounter from "./BasicReduxCounter";
-import {createStore,compose} from 'redux'
+import {createStore,compose,applyMiddleware} from 'redux'
 import {Provider, connect} from 'react-redux'
 import {reduce} from './simple_actions_n_reduce'
 import ReactRedux from "./ReactRedux";
@@ -13,8 +13,15 @@ import ReduxComponent2 from "./NestedReduxComponent2";
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = devTools || compose;
 
+const middlewares = []; // 나중에 이 자리에 미들웨어 추가
+
 const store = createStore(reduce,composeEnhancers());
 // const store = createStore(reduce);
+
+// const store = createStore(modules, composeEnhancers(
+//     applyMiddleware(...middlewares)
+// ));
+
 
 class App extends Component {
     // const
