@@ -1,4 +1,4 @@
-import {asyncInc} from './saga'
+import {asyncInc} from './store/saga'
 import { put, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 // import test from 'tape';

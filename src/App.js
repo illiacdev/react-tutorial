@@ -3,8 +3,8 @@ import {createStore,compose,applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import factory  from 'redux-saga'
 
-import {reduce} from './actions'
-import {sagaMain} from './saga'
+import {reduce} from './store/actions'
+import {sagaMain} from './store/saga'
 
 import logo from './logo.svg';
 import './App.css';
