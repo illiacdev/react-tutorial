@@ -4,7 +4,6 @@ import Bus from 'rxjs-event-bus'
 export default class EventBus {
 
     static instance;
-
     static getInstance(){
         if(EventBus.instance)
             return EventBus.instance;
@@ -13,7 +12,6 @@ export default class EventBus {
         Object.freeze(EventBus.instance);
         return EventBus.instance;
     }
-
 }
 
 

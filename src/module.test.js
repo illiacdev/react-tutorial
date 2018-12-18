@@ -1,4 +1,4 @@
-import Foo from './Foo'
+// import Foo from './Foo'
 
 import EventBus from './Experiment/EventBus'
 
@@ -8,14 +8,20 @@ const log = (() => {
         console.log(`${++counter}: type: ${event.type}, payload: ${event.payload}`)
 })()
 
+
+const log2 = event =>
+    console.log(`type: ${event.type}, payload: ${event.payload}`);
+
 it('should bus test', function () {
     let bus = EventBus.getInstance();
 
-    bus.select('first_event_name').subscribe(log);
+    let obj = bus.select('first_event_name').subscribe(log2);
+    // console.log(obj);
     bus.emit({type: 'first_event_name', payload: 1});
 
     let bus2 = EventBus.getInstance();
 
+    obj.unsubscribe();
     bus2.emit({type: 'first_event_name', payload: 2});
 
 });
