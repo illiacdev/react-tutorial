@@ -75,8 +75,13 @@ function* gen(){
 
 
 it('should test gen', function () {
-    let it = gen();
-    it.next("첫번째 next");
-    it.next("두번째 next");
-    // it.next();
+    let promise = new Promise(resolve => {
+        setTimeout(() => {
+            resolve("done!");
+        }, 1000);
+    });
+
+    console.log(promise);
+
 });
+
